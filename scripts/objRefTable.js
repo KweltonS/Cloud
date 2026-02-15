@@ -34,6 +34,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.progressbar.Acts.SetMaximum,
 		C3.Plugins.progressbar.Acts.SetProgress,
+		C3.Plugins.Sprite.Cnds.IsOverlapping,
 		C3.Plugins.Button.Acts.SetCSSStyle,
 		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.System.Cnds.OnLoadFinished,
