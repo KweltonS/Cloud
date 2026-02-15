@@ -1251,6 +1251,11 @@ self["C3_Shaders"] = {};
 {const a=self.C3,b="progress-bar";a.Plugins.progressbar=class extends a.SDKDOMPluginBase{constructor(e){super(e,b),this.AddElementMessageHandler("click",(e,t)=>e._OnClick(t))}Release(){super.Release()}}}{const g=self.C3;g.Plugins.progressbar.Type=class extends g.SDKTypeBase{constructor(e){super(e)}Release(){super.Release()}OnCreate(){}}}{const j=self.C3,k=self.C3X,l=0,m=1,n=2,o=3,p=4,q=5,r="progress-bar",s=(j.Plugins.progressbar.Instance=class extends j.SDKDOMInstanceBase{constructor(e,t){super(e,r),this._value=0,this._max=100,this._title="",this._id="",this._className="",t&&(this._value=t[l],this._max=t[m],this._title=t[n],this.GetWorldInfo().SetVisible(t[o]),this._id=t[p],this._className=t[q]),this.CreateElement({"id":this._id,"className":this._className})}Release(){super.Release()}GetElementState(){return{"value":this._value,"max":this._max,"title":this._title}}async _OnClick(e){this.DispatchScriptEvent("click"),await this.TriggerAsync(j.Plugins.progressbar.Cnds.OnClicked)}_SetTooltip(e){this._title!==e&&(this._title=e,this.UpdateElementState())}_GetTooltip(){return this._title}_SetProgress(e){this._value!==e&&(this._value=e,this.UpdateElementState())}_GetProgress(){return this._value}_SetMaximum(e){this._max!==e&&(this._max=e,this.UpdateElementState())}_GetMaximum(){return this._max}_SetIndeterminate(){this._max=0,this._value=0,this.UpdateElementState()}Draw(e){}SaveToJson(){return{"v":this._value,"m":this._max,"t":this._title,"id":this._id}}LoadFromJson(e){this._value=e["v"],this._max=e["m"],this._title=e["t"],this._id=e["id"],this.UpdateElementState()}GetPropertyValueByIndex(e){switch(e){case l:return this._GetProgress();case m:return this._GetMaximum();case n:return this._GetTooltip()}}SetPropertyValueByIndex(e,t){switch(e){case l:this._SetProgress(t);break;case m:this._SetMaximum(t);break;case n:this._SetTooltip(t)}}GetDebuggerProperties(){const e="plugins.progressbar";return[{title:e+".name",properties:[{name:e+".properties.value.name",value:this._GetProgress(),onedit:e=>this._SetProgress(e)},{name:e+".properties.maximum.name",value:this._GetMaximum(),onedit:e=>this._SetMaximum(e)}]}]}GetScriptInterfaceClass(){return self.IProgressBarInstance}},new WeakMap);self.IProgressBarInstance=class extends self.IDOMInstance{constructor(){super(),s.set(this,self.IInstance._GetInitInst().GetSdkInstance())}set progress(e){k.RequireFiniteNumber(e),s.get(this)._SetProgress(e)}get progress(){return s.get(this)._GetProgress()}set maximum(e){k.RequireFiniteNumber(e),s.get(this)._SetMaximum(e)}get maximum(){return s.get(this)._GetMaximum()}set tooltip(e){k.RequireString(e),s.get(this)._SetTooltip(e)}get tooltip(){return s.get(this)._GetTooltip()}setIndeterminate(){s.get(this)._SetIndeterminate()}}}{const M=self.C3;M.Plugins.progressbar.Cnds={OnClicked(){return!0},CompareProgress(e,t){return M.compare(this._GetProgress(),e,t)}}}{const P=self.C3;P.Plugins.progressbar.Acts={SetTooltip(e){this._SetTooltip(e)},SetProgress(e){this._SetProgress(e)},SetMaximum(e){this._SetMaximum(e)},SetIndeterminate(){this._SetIndeterminate()}}}{const T=self.C3;T.Plugins.progressbar.Exps={Progress(){return this._GetProgress()},Maximum(){return this._GetMaximum()}}}
 }
 
+// scripts/plugins/List/c3runtime/runtime.js
+{
+{const a=self.C3,b="list";a.Plugins.List=class extends a.SDKDOMPluginBase{constructor(e){super(e,b),this.AddElementMessageHandler("click",(e,t)=>e._OnClick(t)),this.AddElementMessageHandler("dblclick",(e,t)=>e._OnDoubleClick(t)),this.AddElementMessageHandler("change",(e,t)=>e._OnChange(t))}Release(){super.Release()}}}{const k=self.C3;k.Plugins.List.Type=class extends k.SDKTypeBase{constructor(e){super(e)}Release(){super.Release()}OnCreate(){}}}{const n=self.C3,o=self.C3X,p=0,q=1,r=2,s=3,t=4,u=5,v=6,w=7,x=8,y=0,z=1,A="list",B=(n.Plugins.List.Instance=class extends n.SDKDOMInstanceBase{constructor(e,i){if(super(e,A),this._items=[],this._stringItems="",this._title="",this._isEnabled=!0,this._isDropdown=!0,this._isMultiSelect=!1,this._autoFontSize=!0,this._id="",this._className="",this._selectedIndex=-1,this._selectedIndices=[],i){const n=i[p];this._items=n?n.split("\n"):[],this._stringItems=i[p],this._title=i[q],this.GetWorldInfo().SetVisible(!!i[r]),this._isEnabled=!!i[s],this._isDropdown=i[t]===z,this._isMultiSelect=!!i[u],this._autoFontSize=!!i[v],this._id=i[w],this._className=i[x],this._isDropdown&&(this._selectedIndex=0)}this.CreateElement({"id":this._id,"className":this._className,"isDropdown":this._isDropdown,"isMultiSelect":this._isMultiSelect,"items":this._items})}Release(){n.clearArray(this._items),this._items=null,n.clearArray(this._selectedIndices),this._selectedIndices=null,super.Release()}GetElementState(){return{"title":this._title,"isEnabled":this._isEnabled,"isMultiSelect":this._isMultiSelect}}_UpdateSelectedIndex(){this.PostToDOMElement("set-selected-index",{"selectedIndex":this._selectedIndex})}_ReadSelectionState(e){this._selectedIndex=e["selectedIndex"],this._selectedIndices=e["selectedIndices"]}async _OnClick(e){this._ReadSelectionState(e),this.DispatchScriptEvent("click"),await this.TriggerAsync(n.Plugins.List.Cnds.OnClicked)}async _OnDoubleClick(e){this._ReadSelectionState(e),this.DispatchScriptEvent("dblclick"),await this.TriggerAsync(n.Plugins.List.Cnds.OnDoubleClicked)}async _OnChange(e){this._ReadSelectionState(e),this.DispatchScriptEvent("selectionchange"),await this.TriggerAsync(n.Plugins.List.Cnds.OnSelectionChanged)}_GetItemCount(){return this._items.length}_SetSelectedIndex(e){(e=(e=Math.floor(e))<0?-1:e)>=this._items.length||this._selectedIndex!==e&&(this._selectedIndex=e,this._selectedIndices=[e],this._UpdateSelectedIndex())}_GetSelectedIndex(){return this._selectedIndex}_GetSelectedCount(){return this._selectedIndices.length}_GetSelectedIndexAt(e){return(e=Math.floor(e))<0||e>=this._selectedIndices.length?0:this._selectedIndices[e]}_GetSelectedTextAt(e){return(e=Math.floor(e))<0||e>=this._selectedIndices.length||(e=this._selectedIndices[e])<0||e>=this._items.length?"":this._items[e]}_SetTooltip(e){this._title!==e&&(this._title=e,this.UpdateElementState())}_GetTooltip(){return this._title}_AddItem(e){this._items.push(e),this.PostToDOMElement("add-item",{"text":e,"index":-1})}_AddItemAt(s,e){if((s=Math.max(Math.floor(s),0))>=this._items.length)this._items.push(e),s=-1;else{this._items.splice(s,0,e),this._selectedIndex>=s&&this._selectedIndex++;for(let e=0,t=this._selectedIndices.length;e<t;++e)this._selectedIndices[e]>=s&&this._selectedIndices[e]++}this.PostToDOMElement("add-item",{"index":s,"text":e})}_RemoveItem(s){if(!((s=Math.floor(s))<0||s>=this._items.length)){this._items.splice(s,1),this._selectedIndex>=s&&this._selectedIndex--;let t=this._selectedIndices.indexOf(s);-1!==t&&this._selectedIndices.splice(t,1),t=0;for(let e=this._selectedIndices.length;t<e;++t)this._selectedIndices[t]>=s&&this._selectedIndices[t]--;this.PostToDOMElement("remove-item",{"index":s})}}_SetItemText(e,t){(e=Math.floor(e))<0||e>=this._items.length||(this._items[e]=t,this.PostToDOMElement("set-item",{"index":e,"text":t}))}_GetItemText(e){return(e=Math.floor(e))<0||e>=this._items.length?"":this._items[e]}_Clear(){n.clearArray(this._items),this._selectedIndex=-1,n.clearArray(this._selectedIndices),this.PostToDOMElement("clear")}_SetMultiSelect(e){this._isMultiSelect!==(e=!!e)&&(this._isMultiSelect=e,this.UpdateElementState())}_IsMultiSelect(){return this._isMultiSelect}_SetEnabled(e){this._isEnabled!==(e=!!e)&&(this._isEnabled=e,this.UpdateElementState())}_IsEnabled(){return this._isEnabled}Draw(e){}SaveToJson(){return{"title":this._title,"isEnabled":this._isEnabled,"id":this._id,"items":n.cloneArray(this._items),"selectedIndex":this._selectedIndex,"selectedIndices":this._selectedIndices}}LoadFromJson(e){this._title=e["title"],this._isEnabled=e["isEnabled"],this._id=e["id"],this._items=n.cloneArray(e["items"]),this._stringItems=this._items.join("/n"),this._selectedIndex=e["selectedIndex"],this._selectedIndices=e["selectedIndices"],this.UpdateElementState(),this.PostToDOMElement("load-state",{"items":this._items,"selectedIndex":this._selectedIndex,"selectedIndices":this._selectedIndices})}GetPropertyValueByIndex(e){switch(e){case p:return this._stringItems;case q:return this._GetTooltip();case s:return this._IsEnabled();case u:return this._IsMultiSelect();case v:return this._autoFontSize}}SetPropertyValueByIndex(e,t){switch(e){case p:this._stringItems!==t&&(this._items=t.split("\n"),this._stringItems=t,this._selectedIndex=n.clamp(this._selectedIndex,0,this._items.length-1),this.UpdateElementState(),this.PostToDOMElement("load-state",{"items":this._items,"selectedIndex":this._selectedIndex,"selectedIndices":this._selectedIndices}));break;case q:this._SetTooltip(t);break;case s:this._SetEnabled(t);break;case u:this._SetMultiSelect(t);break;case v:this._autoFontSize!==!!t&&(this._autoFontSize=!!t,this.UpdateElementState())}}GetDebuggerProperties(){const e="plugins.list";return[{title:e+".name",properties:[{name:e+".debugger.item-count",value:this._GetItemCount()},{name:e+".properties.enabled.name",value:this._IsEnabled(),onedit:e=>this._SetEnabled(e)},{name:e+".debugger.selected-index",value:this._GetSelectedIndex()}]},{title:e+".properties.items.name",properties:this._items.map((e,t)=>({name:"$"+t,value:e,onedit:e=>this._SetItemText(t,e)}))}]}GetScriptInterfaceClass(){return self.IListInstance}},new WeakMap);self.IListInstance=class extends self.IDOMInstance{constructor(){super(),B.set(this,self.IInstance._GetInitInst().GetSdkInstance())}set selectedIndex(e){o.RequireFiniteNumber(e),B.get(this)._SetSelectedIndex(e)}get selectedIndex(){return B.get(this)._GetSelectedIndex()}get selectedCount(){return B.get(this)._GetSelectedCount()}getSelectedIndexAt(e){return o.RequireFiniteNumber(e),B.get(this)._GetSelectedIndexAt(e)}getSelectedTextAt(e){return o.RequireFiniteNumber(e),B.get(this)._GetSelectedTextAt(e)}set tooltip(e){o.RequireString(e),B.get(this)._SetTooltip(e)}get tooltip(){return B.get(this)._GetTooltip()}addItem(e){o.RequireString(e),B.get(this)._AddItem(e)}insertItem(e,t){o.RequireFiniteNumber(e),o.RequireString(t),B.get(this)._AddItemAt(e,t)}setItemText(e,t){o.RequireFiniteNumber(e),o.RequireString(t),B.get(this)._SetItemText(e,t)}getItemText(e){return o.RequireFiniteNumber(e),B.get(this)._GetItemText(e)}removeItem(e){o.RequireFiniteNumber(e),B.get(this)._RemoveItem(e)}clear(){B.get(this)._Clear()}get itemCount(){return B.get(this)._GetItemCount()}}}{const va=self.C3;va.Plugins.List.Cnds={CompareSelection(e,t){return va.compare(this._selectedIndex,e,t)},OnSelectionChanged(){return!0},OnClicked(){return!0},OnDoubleClicked(){return!0},CompareSelectedText(e,t){const s=this._selectedIndex;if(s<0||s>=this._items.length)return!1;const i=this._items[s];return t?i===e:va.equalsNoCase(i,e)},CompareTextAt(e,t,s){if((e=Math.floor(e))<0||e>=this._items.length)return!1;const i=this._items[e];return s?i===t:va.equalsNoCase(i,t)}}}{const Ga=self.C3;Ga.Plugins.List.Acts={Select(e){this._SetSelectedIndex(e)},SetTooltip(e){this._SetTooltip(e)},SetVisible(e){const t=this.GetWorldInfo();e=0!==e,t.IsVisible()!==e&&t.SetVisible(e)},AddItem(e){this._AddItem(e)},AddItemAt(e,t){this._AddItemAt(e,t)},Remove(e){this._RemoveItem(e)},SetItemText(e,t){this._SetItemText(e,t)},Clear(){this._Clear()}}}{const Ra=self.C3;Ra.Plugins.List.Exps={ItemCount(){return this._GetItemCount()},ItemTextAt(e){return this._GetItemText(e)},SelectedIndex(){return this._GetSelectedIndex()},SelectedText(){return this._GetItemText(this._GetSelectedIndex())},SelectedCount(){return this._GetSelectedCount()},SelectedIndexAt(e){return this._GetSelectedIndexAt(e)},SelectedTextAt(e){return this._GetSelectedTextAt(e)}}}
+}
+
 // scripts/expTable.js
 {
 
@@ -1349,25 +1354,27 @@ function or(l, r)
 }
 
 self.C3_ExpressionFuncs = [
-		() => 2,
+		() => 3,
 		() => "ButtonKrug System",
 		() => 14,
 		() => 13,
 		() => "SCROLL",
+		() => 1,
 		() => 0,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (f0(0) + 30);
+			return () => (f0(1) + 30);
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (f0(0) - 30);
+			return () => (f0(1) - 30);
 		},
 		() => 20,
+		() => 8,
 		() => 19,
 		() => "gb Info System",
 		() => "accent-color",
-		() => "#0000FF",
+		() => "#0089f3",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => (("из " + f0("maxGB")) + " ГБ");
@@ -1389,29 +1396,31 @@ self.C3_ExpressionFuncs = [
 			return () => v0.GetValue();
 		},
 		() => "background",
-		() => "#E9EEF6",
+		() => "#282A2C",
 		() => "border",
 		() => "none",
+		() => "color",
+		() => "white",
 		() => "font-family",
 		() => "GeoCade_Sans",
 		() => "font-size",
 		() => "16px",
 		() => "border-radius",
-		() => "white",
+		() => "#131314",
 		() => 0.1,
-		() => 3,
+		() => 2,
 		() => "File1",
 		() => "file1",
-		() => 570,
-		() => 196,
+		() => 580,
+		() => 130,
 		() => "",
-		() => 235,
-		() => 208,
+		() => 256,
+		() => 140,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("file1");
 		},
-		() => "20px",
+		() => "18px",
 		() => "File2",
 		() => "file2",
 		p => {
@@ -1441,6 +1450,30 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0("file6");
+		},
+		() => "File7",
+		() => "file7",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("file7");
+		},
+		() => "File8",
+		() => "file8",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("file8");
+		},
+		() => "File9",
+		() => "file9",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("file9");
+		},
+		() => "File10",
+		() => "file10",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("file10");
 		}
 ];
 
